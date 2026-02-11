@@ -590,38 +590,7 @@
             color: var(--accent-primary);
         }
 
-        .network-toggle {
-            display: flex;
-            background: var(--bg-card);
-            border: 1px solid var(--border-subtle);
-            border-radius: 16px;
-            overflow: hidden;
-            box-shadow: 0 1px 8px rgba(0, 0, 0, 0.06);
-        }
 
-        .network-toggle button {
-            padding: 1.1rem 1.75rem;
-            background: transparent;
-            border: none;
-            color: var(--text-muted);
-            font-family: inherit;
-            font-size: 0.95rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            position: relative;
-        }
-
-        .network-toggle button.active {
-            background: linear-gradient(135deg, var(--accent-teal), var(--accent-primary));
-            color: #fff;
-            font-weight: 600;
-            box-shadow: 0 2px 12px rgba(15, 118, 110, 0.35);
-        }
-
-        .network-toggle button:not(.active):hover {
-            color: var(--text-primary);
-            background: var(--bg-darker);
-        }
 
         /* Filter buttons */
         .filter-buttons {
@@ -1900,6 +1869,102 @@
         .primary-btn:active {
             transform: translateY(0);
         }
+
+        /* Logout Button */
+        .logout-btn {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: rgba(255, 255, 255, 0.9);
+            padding: 0.6rem 1.2rem;
+            border-radius: 99px;
+            cursor: pointer;
+            font-family: inherit;
+            font-weight: 500;
+            transition: all 0.2s;
+            backdrop-filter: blur(4px);
+        }
+
+        .logout-btn svg {
+            width: 18px;
+            height: 18px;
+        }
+
+        .logout-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+            color: #fff;
+            border-color: rgba(255, 255, 255, 0.4);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Logout Modal */
+        #logoutModal .modal {
+            background: #fff;
+            width: 100%;
+            max-width: 400px;
+            border-radius: 16px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            overflow: hidden;
+            transform: scale(0.95);
+            opacity: 0;
+            transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        #logoutModal.active .modal {
+            transform: scale(1);
+            opacity: 1;
+        }
+
+        .modal-body p {
+            font-size: 1.1rem;
+            color: var(--text-primary);
+            text-align: center;
+            padding: 1rem;
+        }
+
+        .modal-footer {
+            display: flex;
+            gap: 1rem;
+            padding: 1.5rem;
+            justify-content: center;
+            background: var(--bg-card-hover);
+            border-top: 1px solid var(--border-subtle);
+        }
+
+        .btn-cancel,
+        .btn-confirm {
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            border: none;
+            font-size: 1rem;
+        }
+
+        .btn-cancel {
+            background: #fff;
+            border: 1px solid var(--border-subtle);
+            color: var(--text-primary);
+        }
+
+        .btn-cancel:hover {
+            background: var(--bg-dark);
+        }
+
+        .btn-confirm {
+            background: #ef4444;
+            color: white;
+            box-shadow: 0 4px 12px rgba(239, 68, 68, 0.2);
+        }
+
+        .btn-confirm:hover {
+            background: #dc2626;
+            transform: translateY(-1px);
+        }
     </style>
 </head>
 
@@ -1962,7 +2027,7 @@
                             Version: <strong>1.0 Alpha (For Simulation)</strong>
                         </div>
                         <button type="submit" class="lockscreen-button">
-                            Unlock
+                            Login
                             <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor"
                                 stroke-width="1.8">
                                 <path d="M5 12h14M13 6l6 6-6 6"></path>
@@ -2055,6 +2120,14 @@
                     <span class="powered-by">Powered by AIRC · Altius Inspiro</span>
                 </div>
             </div>
+            <button class="logout-btn" onclick="showLogoutModal()">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
+                    <polyline points="16 17 21 12 16 7" />
+                    <line x1="21" y1="12" x2="9" y2="12" />
+                </svg>
+                <span>Logout</span>
+            </button>
         </div>
 
         <header>
@@ -2107,7 +2180,7 @@
             'Enterprise Report': 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSgHmjRk7reipCIoYUF_OpznpijBJwk_ib9SA&s',
             'Consolidated Absenteeism AIRC': 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSgHmjRk7reipCIoYUF_OpznpijBJwk_ib9SA&s',
             'AIRC-1800 Flowers': '1800flowers.com',
-            'AIRC-AHMC': 'ahmc.com',
+            'AIRC-AHMC': 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQIpKdZ73PHvm0wBKbNcrK0_GCmzAcX_f9grA&s',
             'AIRC-ANA': 'ana.co.jp',
             'AIRC-APTELLA': 'https://yt3.googleusercontent.com/ytc/AIdro_lJ1DzbNc4T1ohj93gdwSTsEdqHtPG1LTe4lOuXjcsv6ao=s900-c-k-c0x00ffffff-no-rj',
             'AIRC-ASC LTD.': 'ascbrands.com',
@@ -2172,7 +2245,46 @@
             'AIRC-UNIQLO Non-voice': 'uniqlo.com',
             'AIRC-UNIQLO Universalist': 'uniqlo.com',
             'AIRC-Viagogo': 'viagogo.com',
-            'PAL': 'philippineairlines.com'
+            'PAL': 'philippineairlines.com',
+            'EPLDT': 'epldt.com',
+            'PLDT SOCIAL MEDIA': 'pldt.com',
+            'PLDT-177 EMAIL CENTER': 'pldt.com',
+            'PLDT-177 SOCIAL MEDIA': 'pldt.com',
+            'PLDT-BILLING AND ACCOUNTS': 'pldt.com',
+            'PLDT-CCBO': 'pldt.com',
+            'PLDT-CENTRAL FULFILLMENT': 'pldt.com',
+            'PLDT-CREDIT VALIDATION TEAM': 'pldt.com',
+            'PLDT-CWT ENTERPRISE': 'pldt.com',
+            'PLDT-CWT RESIDENTIAL': 'pldt.com',
+            'PLDT-ENTERPRISE BACK OF HOUSE': 'pldt.com',
+            'PLDT-ENTERPRISE EMAIL': 'pldt.com',
+            'PLDT-ENTERPRISE HOTLINE': 'pldt.com',
+            'PLDT-ENTERPRISE WEB TO LEAD': 'pldt.com',
+            'PLDT-HOME CARE': 'pldt.com',
+            'PLDT-HOME COLLECTION': 'pldt.com',
+            'PLDT-HOME UHW': 'pldt.com',
+            'PLDT-PLDT TELESALES': 'pldt.com',
+            'PLDT-POSTPAID FIELD SERVICE': 'pldt.com',
+            'PLDT-PREPAID FIBER': 'pldt.com',
+            'PLDT-RED FIBER': 'pldt.com',
+            'PLDT-REPAIR': 'pldt.com',
+            'PLDT-RETENTION': 'pldt.com',
+            'PNB': 'pnb.com.ph',
+            'SMART-EBG CORPORATE EMAIL': 'https://logodix.com/logo/1195036.png',
+            'SMART-EBG ENTERPRISE': 'https://logodix.com/logo/1195036.png',
+            'SMART-ENTERPRISE BACK OFFICE/HYPER ECARE': 'https://logodix.com/logo/1195036.png',
+            'SMART-ENTERPRISE RETENTION': 'https://logodix.com/logo/1195036.png',
+            'SMART-HYPERCARE': 'https://logodix.com/logo/1195036.png',
+            'SMART-INFINITY': 'https://logodix.com/logo/1195036.png',
+            'SMART-L2 UNIVERSALIST': 'https://logodix.com/logo/1195036.png',
+            'SMART-Onlinesales': 'https://logodix.com/logo/1195036.png',
+            'SMART-POSTPAID': 'https://logodix.com/logo/1195036.png',
+            'SMART-PREPAID': 'https://logodix.com/logo/1195036.png',
+            'SMART-SIM REGISTRATION': 'https://logodix.com/logo/1195036.png',
+            'SMART-SOCIAL MEDIA': 'https://logodix.com/logo/1195036.png',
+            'SMART-TELESALES': 'https://logodix.com/logo/1195036.png',
+            'SMART-TRADE': 'https://logodix.com/logo/1195036.png',
+            'VITRO': 'https://cdn.manilastandard.net/wp-content/uploads/2024/11/VITRO-Data-Center.jpg'
         };
 
         const reports = [
@@ -2245,7 +2357,46 @@
             { name: "AIRC-UNIQLO Non-voice", internal: "https://app.powerbi.com/groups/21679cca-04e8-4658-86d6-fe210ccc4391/reports/5d48060b-3f4f-45af-9365-5ad9a713b6e6/75e222b29352a864931f?experience=power-bi", external: "https://app.powerbi.com/view?r=eyJrIjoiYTk1YTkzZTEtYzk3ZC00ZjU2LWE5ZGMtMjc2YmJlZTQ2ZTBlIiwidCI6IjE3MGZjOGRiLTI4YmUtNDg3Ni1hZDRmLTk0ZTk4NDE4M2E3YiIsImMiOjEwfQ%3D%3D" },
             { name: "AIRC-UNIQLO Universalist", internal: "https://app.powerbi.com/groups/21679cca-04e8-4658-86d6-fe210ccc4391/reports/9007af3d-b7a0-4d62-b62a-e4d1c35294a0/75e222b29352a864931f?experience=power-bi", external: "https://app.powerbi.com/view?r=eyJrIjoiZWJkYWUyYTYtNTk4MS00NjE5LWE4ZDUtOGRjZDcyMDk1OTllIiwidCI6IjE3MGZjOGRiLTI4YmUtNDg3Ni1hZDRmLTk0ZTk4NDE4M2E3YiIsImMiOjEwfQ%3D%3D" },
             { name: "AIRC-Viagogo", internal: "https://app.powerbi.com/groups/21679cca-04e8-4658-86d6-fe210ccc4391/reports/19993582-9fae-4257-a86c-ed95ac49cb7f/75e222b29352a864931f?experience=power-bi", external: "https://app.powerbi.com/view?r=eyJrIjoiZjBkMTZkYzYtMjhhZS00YzZkLTg1MTUtMGViYjU5OTA4ZDhlIiwidCI6IjE3MGZjOGRiLTI4YmUtNDg3Ni1hZDRmLTk0ZTk4NDE4M2E3YiIsImMiOjEwfQ%3D%3D" },
-            { name: "PAL", internal: "https://app.powerbi.com/groups/21679cca-04e8-4658-86d6-fe210ccc4391/reports/a2779625-cfa7-46ba-b84f-b8314dfb24cc/526e8ff748930c84e01d?experience=power-bi", external: "https://app.powerbi.com/view?r=eyJrIjoiZGYyOTIwYTQtZmJiNy00MzBlLTkxMGEtYThlNDRjZmYwNDI0IiwidCI6IjE3MGZjOGRiLTI4YmUtNDg3Ni1hZDRmLTk0ZTk4NDE4M2E3YiIsImMiOjEwfQ%3D%3D" }
+            { name: "PAL", internal: "https://app.powerbi.com/groups/21679cca-04e8-4658-86d6-fe210ccc4391/reports/a2779625-cfa7-46ba-b84f-b8314dfb24cc/526e8ff748930c84e01d?experience=power-bi", external: "https://app.powerbi.com/view?r=eyJrIjoiZGYyOTIwYTQtZmJiNy00MzBlLTkxMGEtYThlNDRjZmYwNDI0IiwidCI6IjE3MGZjOGRiLTI4YmUtNDg3Ni1hZDRmLTk0ZTk4NDE4M2E3YiIsImMiOjEwfQ%3D%3D" },
+            { name: "EPLDT", internal: "#", external: "https://app.powerbi.com/view?r=eyJrIjoiNTVhYzQ4YzktYTYyZC00MjkyLWI0ZTgtNjY3M2Q1ZTM2YTdjIiwidCI6ImUwYjMxZjliLTgxYjUtNGM5ZC05MjYxLTNlNTViMWU3NWFhZCIsImMiOjEwfQ%3D%3D" },
+            { name: "PLDT SOCIAL MEDIA", internal: "#", external: "#" },
+            { name: "PLDT-177 EMAIL CENTER", internal: "#", external: "#" },
+            { name: "PLDT-177 SOCIAL MEDIA", internal: "#", external: "#" },
+            { name: "PLDT-BILLING AND ACCOUNTS", internal: "#", external: "https://app.powerbi.com/view?r=eyJrIjoiYjBiZmNmNGUtZDM5MS00N2I0LTgyYWUtYTkwMTNhMjEyY2VkIiwidCI6ImUwYjMxZjliLTgxYjUtNGM5ZC05MjYxLTNlNTViMWU3NWFhZCIsImMiOjEwfQ%3D%3D" },
+            { name: "PLDT-CCBO", internal: "#", external: "https://app.powerbi.com/view?r=eyJrIjoiNjNkYWFlNmQtM2JiMC00YTg1LTkwMjYtYzhkMDcwYmNkMTIzIiwidCI6ImUwYjMxZjliLTgxYjUtNGM5ZC05MjYxLTNlNTViMWU3NWFhZCIsImMiOjEwfQ%3D%3D" },
+            { name: "PLDT-CENTRAL FULFILLMENT", internal: "#", external: "#" },
+            { name: "PLDT-CREDIT VALIDATION TEAM", internal: "#", external: "https://app.powerbi.com/view?r=eyJrIjoiYmQ3MWJlMjgtZTY5Zi00M2QyLTk4YTktNzc0N2VkZDMwYzAzIiwidCI6ImUwYjMxZjliLTgxYjUtNGM5ZC05MjYxLTNlNTViMWU3NWFhZCIsImMiOjEwfQ%3D%3D" },
+            { name: "PLDT-CWT ENTERPRISE", internal: "#", external: "https://app.powerbi.com/view?r=eyJrIjoiOGE3YzcxNTktNDMzNS00M2NlLTk3ODMtZjIzZTUwODI1NWMzIiwidCI6ImUwYjMxZjliLTgxYjUtNGM5ZC05MjYxLTNlNTViMWU3NWFhZCIsImMiOjEwfQ%3D%3D" },
+            { name: "PLDT-CWT RESIDENTIAL", internal: "#", external: "https://app.powerbi.com/view?r=eyJrIjoiZTFiOGY5NjUtMTEyZC00YzRiLWJlMGMtZTUwNGNkNWUyMDljIiwidCI6ImUwYjMxZjliLTgxYjUtNGM5ZC05MjYxLTNlNTViMWU3NWFhZCIsImMiOjEwfQ%3D%3D" },
+            { name: "PLDT-ENTERPRISE BACK OF HOUSE", internal: "#", external: "#" },
+            { name: "PLDT-ENTERPRISE EMAIL", internal: "#", external: "#" },
+            { name: "PLDT-ENTERPRISE HOTLINE", internal: "#", external: "https://app.powerbi.com/view?r=eyJrIjoiNjRkZDNjMWUtYTdmOC00ZGFlLWExMWMtZDkxNDdmNjExODcwIiwidCI6ImUwYjMxZjliLTgxYjUtNGM5ZC05MjYxLTNlNTViMWU3NWFhZCIsImMiOjEwfQ%3D%3D" },
+            { name: "PLDT-ENTERPRISE WEB TO LEAD", internal: "#", external: "#" },
+            { name: "PLDT-HOME CARE", internal: "#", external: "https://app.powerbi.com/view?r=eyJrIjoiMjdjYmE0NTEtZjI3MC00ZjNmLWEyYjctN2IyZDc3MWMyN2EyIiwidCI6ImUwYjMxZjliLTgxYjUtNGM5ZC05MjYxLTNlNTViMWU3NWFhZCIsImMiOjEwfQ%3D%3D" },
+            { name: "PLDT-HOME COLLECTION", internal: "#", external: "https://app.powerbi.com/view?r=eyJrIjoiMjdjYmE0NTEtZjI3MC00ZjNmLWEyYjctN2IyZDc3MWMyN2EyIiwidCI6ImUwYjMxZjliLTgxYjUtNGM5ZC05MjYxLTNlNTViMWU3NWFhZCIsImMiOjEwfQ%3D%3D" },
+            { name: "PLDT-HOME UHW", internal: "#", external: "https://app.powerbi.com/view?r=eyJrIjoiNDdmODZhNDgtNWUyNy00MmU1LWEwMTEtOGMxZThhYTNjNDBmIiwidCI6ImUwYjMxZjliLTgxYjUtNGM5ZC05MjYxLTNlNTViMWU3NWFhZCIsImMiOjEwfQ%3D%3D" },
+            { name: "PLDT-PLDT TELESALES", internal: "#", external: "https://app.powerbi.com/view?r=eyJrIjoiNjljOTU0Y2QtMzliZC00Mzc2LWJlMTEtMjMyM2U5MDVhYzI3IiwidCI6ImUwYjMxZjliLTgxYjUtNGM5ZC05MjYxLTNlNTViMWU3NWFhZCIsImMiOjEwfQ%3D%3D" },
+            { name: "PLDT-POSTPAID FIELD SERVICE", internal: "#", external: "https://app.powerbi.com/view?r=eyJrIjoiMmI1NjBhZDEtYjVlNS00ZDUwLWExMzAtNjViY2ZkZTVlNmNlIiwidCI6ImUwYjMxZjliLTgxYjUtNGM5ZC05MjYxLTNlNTViMWU3NWFhZCIsImMiOjEwfQ%3D%3D" },
+            { name: "PLDT-PREPAID FIBER", internal: "#", external: "https://app.powerbi.com/view?r=eyJrIjoiMWVmMWY1OGItMWZiOS00MzE0LWJjMzEtYWU5MjNhZWFkMzgxIiwidCI6ImUwYjMxZjliLTgxYjUtNGM5ZC05MjYxLTNlNTViMWU3NWFhZCIsImMiOjEwfQ%3D%3D" },
+            { name: "PLDT-RED FIBER", internal: "#", external: "https://app.powerbi.com/view?r=eyJrIjoiMWVmMWY1OGItMWZiOS00MzE0LWJjMzEtYWU5MjNhZWFkMzgxIiwidCI6ImUwYjMxZjliLTgxYjUtNGM5ZC05MjYxLTNlNTViMWU3NWFhZCIsImMiOjEwfQ%3D%3D" },
+            { name: "PLDT-REPAIR", internal: "#", external: "https://app.powerbi.com/view?r=eyJrIjoiMGRiMTVkMzktNDg4Ny00ZTlkLWE4MjctNzNlOTc4OWM0MjkxIiwidCI6ImUwYjMxZjliLTgxYjUtNGM5ZC05MjYxLTNlNTViMWU3NWFhZCIsImMiOjEwfQ%3D%3D" },
+            { name: "PLDT-RETENTION", internal: "#", external: "https://app.powerbi.com/view?r=eyJrIjoiMmIyYjUzMjMtOTNiMS00YWY2LTkxNGItYTY1ZTllMzMxODM2IiwidCI6ImUwYjMxZjliLTgxYjUtNGM5ZC05MjYxLTNlNTViMWU3NWFhZCIsImMiOjEwfQ%3D%3D" },
+            { name: "PNB", internal: "#", external: "https://app.powerbi.com/view?r=eyJrIjoiODRlNjRlNWYtNTFiMi00ZDM4LWI3M2UtMmJlNzhmNzQ1MDEyIiwidCI6ImUwYjMxZjliLTgxYjUtNGM5ZC05MjYxLTNlNTViMWU3NWFhZCIsImMiOjEwfQ%3D%3D" },
+            { name: "SMART-EBG CORPORATE EMAIL", internal: "#", external: "#" },
+            { name: "SMART-EBG ENTERPRISE", internal: "#", external: "https://app.powerbi.com/view?r=eyJrIjoiMGExNjBhNjItMDk5Ny00MzE3LWE3ODctZjY4NTljYWE0MTI2IiwidCI6ImUwYjMxZjliLTgxYjUtNGM5ZC05MjYxLTNlNTViMWU3NWFhZCIsImMiOjEwfQ%3D%3D" },
+            { name: "SMART-ENTERPRISE BACK OFFICE/HYPER ECARE", internal: "#", external: "https://app.powerbi.com/view?r=eyJrIjoiOGQyMDE1ZGUtNTdiZi00YzM4LTlkY2EtZTlhMzIwODZkMDY0IiwidCI6ImUwYjMxZjliLTgxYjUtNGM5ZC05MjYxLTNlNTViMWU3NWFhZCIsImMiOjEwfQ%3D%3D" },
+            { name: "SMART-ENTERPRISE RETENTION", internal: "#", external: "https://app.powerbi.com/view?r=eyJrIjoiYWE3M2MzYTQtYzNiYi00ZjZhLTkyMTAtZTI5NWMwYWJlODJlIiwidCI6ImUwYjMxZjliLTgxYjUtNGM5ZC05MjYxLTNlNTViMWU3NWFhZCIsImMiOjEwfQ%3D%3D" },
+            { name: "SMART-HYPERCARE", internal: "#", external: "https://app.powerbi.com/view?r=eyJrIjoiMjVjODE1ZmMtODRmZC00ZGNhLThmMTQtNjZhMzYwYzNjOWJiIiwidCI6ImUwYjMxZjliLTgxYjUtNGM5ZC05MjYxLTNlNTViMWU3NWFhZCIsImMiOjEwfQ%3D%3D" },
+            { name: "SMART-INFINITY", internal: "#", external: "https://app.powerbi.com/view?r=eyJrIjoiMjgxOTFlMWMtMTZiNS00OWI1LTgwZDEtODU2ZGIzZGYxMzkzIiwidCI6ImUwYjMxZjliLTgxYjUtNGM5ZC05MjYxLTNlNTViMWU3NWFhZCIsImMiOjEwfQ%3D%3D" },
+            { name: "SMART-L2 UNIVERSALIST", internal: "#", external: "https://app.powerbi.com/view?r=eyJrIjoiZWM4OTA0NWEtY2NlNS00OGI5LThhOWEtZDU3NDBjOGI3NTIwIiwidCI6ImUwYjMxZjliLTgxYjUtNGM5ZC05MjYxLTNlNTViMWU3NWFhZCIsImMiOjEwfQ%3D%3D" },
+            { name: "SMART-Onlinesales", internal: "#", external: "#" },
+            { name: "SMART-POSTPAID", internal: "#", external: "https://app.powerbi.com/view?r=eyJrIjoiNGZlNmQ5NWItZDdmNi00OGRmLTlhNDYtMDk5NWE1MGExZjg2IiwidCI6ImUwYjMxZjliLTgxYjUtNGM5ZC05MjYxLTNlNTViMWU3NWFhZCIsImMiOjEwfQ%3D%3D" },
+            { name: "SMART-PREPAID", internal: "#", external: "https://app.powerbi.com/view?r=eyJrIjoiMTJlZmEzN2EtOTI4Yy00ZjUzLTgzYmItYmM4ZTQ4NjNlZGJkIiwidCI6ImUwYjMxZjliLTgxYjUtNGM5ZC05MjYxLTNlNTViMWU3NWFhZCIsImMiOjEwfQ%3D%3D" },
+            { name: "SMART-SIM REGISTRATION", internal: "#", external: "https://app.powerbi.com/view?r=eyJrIjoiNzUzNThjYTgtNDJlOC00Nzk1LTg2N2UtNzMzM2JmNTFhYzc0IiwidCI6ImUwYjMxZjliLTgxYjUtNGM5ZC05MjYxLTNlNTViMWU3NWFhZCIsImMiOjEwfQ%3D%3D" },
+            { name: "SMART-SOCIAL MEDIA", internal: "#", external: "https://app.powerbi.com/view?r=eyJrIjoiNTdjYmZkMTctNjBmNS00ZjhlLWFmNWItNTA2OWEyNzNjMjg5IiwidCI6ImUwYjMxZjliLTgxYjUtNGM5ZC05MjYxLTNlNTViMWU3NWFhZCIsImMiOjEwfQ%3D%3D" },
+            { name: "SMART-TELESALES", internal: "#", external: "#" },
+            { name: "SMART-TRADE", internal: "#", external: "https://app.powerbi.com/view?r=eyJrIjoiZThlYzBlY2UtOWRmMi00YmFiLWE4MDItOWNmMGJlZWExMDkwIiwidCI6ImUwYjMxZjliLTgxYjUtNGM5ZC05MjYxLTNlNTViMWU3NWFhZCIsImMiOjEwfQ%3D%3D" },
+            { name: "VITRO", internal: "#", external: "https://app.powerbi.com/view?r=eyJrIjoiYjk3YjgzNmEtNDQwYS00M2ZhLTk3MWYtZmNhMDljN2YxZDIyIiwidCI6ImUwYjMxZjliLTgxYjUtNGM5ZC05MjYxLTNlNTViMWU3NWFhZCIsImMiOjEwfQ%3D%3D" }
         ];
 
         // Sector.csv data mapping
@@ -2542,7 +2693,16 @@
             'AIRC-RCBC IB': 'RCBC', 'AIRC-RCBC Instaloan': 'RCBC', 'AIRC-RCBC OB': 'RCBC',
             'AIRC-SBI Remit': 'SBI Remit', 'AIRC-Sharkninja': 'Sharkninja', 'AIRC-Shopee': 'Shopee', 'AIRC-SLMC': 'SLMC',
             'AIRC-Teleflora': 'Teleflora', 'AIRC-Tenso': 'Tenso', 'AIRC-UNIQLO Non-voice': 'UNIQLO', 'AIRC-UNIQLO Universalist': 'UNIQLO',
-            'AIRC-Viagogo': 'Viagogo', 'PAL': 'PAL'
+            'AIRC-Viagogo': 'Viagogo', 'PAL': 'PAL', 'EPLDT': 'EPLDT', 'PLDT SOCIAL MEDIA': 'PLDT', 'PLDT-177 EMAIL CENTER': 'PLDT',
+            'PLDT-177 SOCIAL MEDIA': 'PLDT', 'PLDT-BILLING AND ACCOUNTS': 'PLDT', 'PLDT-CCBO': 'PLDT', 'PLDT-CENTRAL FULFILLMENT': 'PLDT',
+            'PLDT-CREDIT VALIDATION TEAM': 'PLDT', 'PLDT-CWT ENTERPRISE': 'PLDT', 'PLDT-CWT RESIDENTIAL': 'PLDT',
+            'PLDT-ENTERPRISE BACK OF HOUSE': 'PLDT', 'PLDT-ENTERPRISE EMAIL': 'PLDT', 'PLDT-ENTERPRISE HOTLINE': 'PLDT',
+            'PLDT-ENTERPRISE WEB TO LEAD': 'PLDT', 'PLDT-HOME CARE': 'PLDT', 'PLDT-HOME COLLECTION': 'PLDT', 'PLDT-HOME UHW': 'PLDT',
+            'PLDT-PLDT TELESALES': 'PLDT', 'PLDT-POSTPAID FIELD SERVICE': 'PLDT', 'PLDT-PREPAID FIBER': 'PLDT', 'PLDT-RED FIBER': 'PLDT',
+            'PLDT-REPAIR': 'PLDT', 'PLDT-RETENTION': 'PLDT', 'PNB': 'PNB', 'SMART-EBG CORPORATE EMAIL': 'SMART', 'SMART-EBG ENTERPRISE': 'SMART',
+            'SMART-ENTERPRISE BACK OFFICE/HYPER ECARE': 'SMART', 'SMART-ENTERPRISE RETENTION': 'SMART', 'SMART-HYPERCARE': 'SMART',
+            'SMART-INFINITY': 'SMART', 'SMART-L2 UNIVERSALIST': 'SMART', 'SMART-Onlinesales': 'SMART', 'SMART-POSTPAID': 'SMART', 'SMART-PREPAID': 'SMART',
+            'SMART-SIM REGISTRATION': 'SMART', 'SMART-SOCIAL MEDIA': 'SMART', 'SMART-TELESALES': 'SMART', 'SMART-TRADE': 'SMART', 'VITRO': 'VITRO'
         };
 
         function getGroupKey(reportName) {
@@ -3014,6 +3174,48 @@
                 });
             }
         });
+
+        // Logout Logic
+        function showLogoutModal() {
+            const modal = document.getElementById('logoutModal');
+            modal.style.display = 'flex';
+            // Force reflow
+            void modal.offsetWidth;
+            modal.classList.add('active');
+        }
+
+        function closeLogoutModal() {
+            const modal = document.getElementById('logoutModal');
+            modal.classList.remove('active');
+            setTimeout(() => {
+                modal.style.display = 'none';
+            }, 200);
+        }
+
+        function confirmLogout() {
+            closeLogoutModal();
+            // Hide directory view
+            document.getElementById('directoryView').style.display = 'none';
+
+            // Reset password field
+            document.getElementById('lockPass').value = '';
+            document.getElementById('lockUser').value = '';
+
+            // Re-show lockscreen overlay with animation
+            document.body.classList.add('locked');
+            const lock = document.getElementById('lockscreen');
+            lock.classList.remove('hidden');
+            lock.style.display = '';
+            lock.style.opacity = '';
+            lock.style.pointerEvents = '';
+
+            // Reset home page if visible
+            const homePage = document.getElementById('homePage');
+            if (homePage) homePage.style.display = 'none';
+
+            // Reset current user
+            currentUser = null;
+        }
     </script>
 
     <!-- Modal -->
@@ -3102,6 +3304,26 @@
                     <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
                 </svg>
             </button>
+        </div>
+    </div>
+    <!-- Logout Modal -->
+    <div id="logoutModal" class="modal-overlay" style="display: none; align-items: center; justify-content: center;">
+        <div class="modal">
+            <div class="modal-header">
+                <h3>Confirm Logout</h3>
+                <div class="modal-close" onclick="closeLogoutModal()">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M18 6L6 18M6 6l12 12" />
+                    </svg>
+                </div>
+            </div>
+            <div class="modal-body">
+                <p>Are you sure you want to log out?</p>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-cancel" onclick="closeLogoutModal()">No</button>
+                <button class="btn-confirm" onclick="confirmLogout()">Yes</button>
+            </div>
         </div>
     </div>
 </body>
