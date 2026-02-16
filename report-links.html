@@ -436,21 +436,25 @@
             align-items: center;
             gap: 0.5rem;
             padding: 0.6rem 1.2rem;
-            background: rgba(124, 58, 237, 0.08);
-            border: 1px solid rgba(124, 58, 237, 0.2);
-            border-radius: 12px;
-            color: var(--accent-primary);
+            background: #ef4444;
+            /* Bright Red */
+            border: 1px solid #dc2626;
+            border-radius: 99px;
+            /* Rounded pill style */
+            color: #ffffff;
             font-size: 0.9rem;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 4px 12px rgba(239, 68, 68, 0.2);
+            position: relative;
+            z-index: 10;
         }
 
         .logout-btn:hover {
-            background: var(--accent-primary);
-            color: #fff;
+            background: #dc2626;
             transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(124, 58, 237, 0.3);
+            box-shadow: 0 6px 16px rgba(220, 38, 38, 0.4);
         }
 
         .logout-btn svg {
@@ -1862,35 +1866,7 @@
             transform: translateY(0);
         }
 
-        /* Logout Button */
-        .logout-btn {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            color: rgba(255, 255, 255, 0.9);
-            padding: 0.6rem 1.2rem;
-            border-radius: 99px;
-            cursor: pointer;
-            font-family: inherit;
-            font-weight: 500;
-            transition: all 0.2s;
-            backdrop-filter: blur(4px);
-        }
 
-        .logout-btn svg {
-            width: 18px;
-            height: 18px;
-        }
-
-        .logout-btn:hover {
-            background: rgba(255, 255, 255, 0.2);
-            color: #fff;
-            border-color: rgba(255, 255, 255, 0.4);
-            transform: translateY(-1px);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-        }
 
         /* Logout Modal */
         #logoutModal .modal {
@@ -2642,48 +2618,47 @@
         // -------------------------------------------------------------------------
         // USER AUTHENTICATION & ACCESS CONTROL - CONFIGURATION
         // -------------------------------------------------------------------------
-        // To ADD A NEW USER, copy an existing line and modify the values.
-        // Format: 'USERNAME': { password: 'PASSWORD', role: 'ROLE', access: 'ACCESS_LEVEL', welcomeMessage: 'MESSAGE' }
-        //
-        // ROLES:
-        // - 'admin': Full access to ALL reports.
-        // - 'bdo':   Restricted access to 'BDO' group reports only.
-        // - 'user':  Standard user. Access is determined by the 'access' field.
-        //
-        // ACCESS LEVEL EXAMPLES (for 'user' role):
-        // 1. "ALL Access Report" -> Can see everything (like Admin).
-        // 2. "Enterprise Report" -> Can see ONLY the report exactly named "Enterprise Report".
-        // 3. "INFOCOM"           -> Can see ALL reports in the "INFOCOM" Client Group.
-        // 4. "Telecomunication"  -> Can see ALL reports in the "Telecomunication" Business Sector.
-        // -------------------------------------------------------------------------
+        /* 
+           HOW TO ADD A NEW USER:
+           1. Create a new key (e.g., 'JuanD').
+           2. role: 'admin' (All Access), 'bdo' (BDO Group only), or 'user' (Restricted).
+           3. access: 
+              - 'ALL Access Report' (Sees everything)
+              - 'Sector Name' (e.g. 'Financial Services')
+              - 'Group Name' (e.g. 'BDO' or 'INFOCOM')
+              - 'Report Name' (Specific single report)
+              - ['Group1', 'Sector2', 'SpecificReport3'] (ARRAY for multiple permissions)
+        */
         const USERS = {
             'Admin': { password: 'Admin0123', role: 'admin', access: 'ALL Access Report', welcomeMessage: 'Welcome, Admin' },
             'BDO01': { password: 'BDO0123', role: 'bdo', access: 'BDO', welcomeMessage: 'Welcome, BDO User' },
             'AIRCAdminSS': { password: 'AIRCAdmin123', role: 'admin', access: 'ALL Access Report', welcomeMessage: 'Welcome Associate Vice President, Workforce Management: Sharon Santos' },
+            'Test': { password: 'Test', role: 'user', access: 'AIRC-BDO core', welcomeMessage: 'Welcome Test Ulol' },
 
-            // Executives
-            'CEORO': { password: 'CEORO123', role: 'user', access: 'Enterprise Report', welcomeMessage: 'Welcome  President and Chief Executive Officer: Ryo Ohashi' },
-            'SEVPRMR': { password: 'SEVPRMR123', role: 'user', access: 'Enterprise Report', welcomeMessage: 'Welcome  Senior Executive Vice President: Rommel Regino' },
-            'CGONK': { password: 'CGONK123', role: 'user', access: 'Enterprise Report', welcomeMessage: 'Welcome  Chief Governance Officer: Naotaka Kawamura' },
-            'CFOTA': { password: 'CFOTA123', role: 'user', access: 'Enterprise Report', welcomeMessage: 'Welcome  Chief Finance Officer: Takanori Asako' },
-            'CIORM': { password: 'CIORM123', role: 'user', access: 'Enterprise Report', welcomeMessage: 'Welcome  Chief Information Officer | Information Technology: Ricelle Matti' },
+            // Executives (Shared access: Enterprise Report)
+            'CEORO': { password: 'CEORO123', role: 'user', access: 'Enterprise Report', welcomeMessage: 'Welcome President and Chief Executive Officer: Ryo Ohashi' },
+            'SEVPRMR': { password: 'SEVPRMR123', role: 'user', access: 'Enterprise Report', welcomeMessage: 'Welcome Senior Executive Vice President: Rommel Regino' },
+            'CGONK': { password: 'CGONK123', role: 'user', access: 'Enterprise Report', welcomeMessage: 'Welcome Chief Governance Officer: Naotaka Kawamura' },
+            'CFOTA': { password: 'CFOTA123', role: 'user', access: 'Enterprise Report', welcomeMessage: 'Welcome Chief Finance Officer: Takanori Asako' },
+            'CIORM': { password: 'CIORM123', role: 'user', access: 'Enterprise Report', welcomeMessage: 'Welcome Chief Information Officer | Information Technology: Ricelle Matti' },
 
             // Senior VPs
-            'SVPWFM': { password: 'SVPWFM123', role: 'user', access: 'Enterprise Report', welcomeMessage: 'Welcome  Senior Vice President, Operations | Business Operations/Workforce Management: John Paul  Meris' },
-            'SVPCOE': { password: 'SVPCOE123', role: 'user', access: 'Enterprise Report', welcomeMessage: 'Welcome  Senior Vice President: Phoebe Lorelei Magsino-Erni' },
-            'SVPGS': { password: 'SVPGS123', role: 'user', access: 'Enterprise Report', welcomeMessage: 'Welcome  Senior Vice President: Alfredo Sixto  Antonio Jr.' },
-            'SVPDSFM': { password: 'SVPDSFM123', role: 'user', access: 'Enterprise Report', welcomeMessage: 'Welcome  Senior Vice President, Delivery and Services Site Operations and Facilities Management : Leonel Joseph Lising' },
-            'SVPCPS': { password: 'SVPCPS123', role: 'user', access: 'Enterprise Report', welcomeMessage: 'Welcome  Senior Vice President Corporate Planning and Strategies: Shuntaro Hiroya' },
-            'SVPOINTL': { password: 'SVPOINTL123', role: 'user', access: 'Enterprise Report', welcomeMessage: 'Welcome  Senior Vice President, Operations: Stanley Dy' },
+            'SVPWFM': { password: 'SVPWFM123', role: 'user', access: 'Enterprise Report', welcomeMessage: 'Welcome Senior Vice President, Operations: John Paul Meris' },
+            'SVPCOE': { password: 'SVPCOE123', role: 'user', access: 'Enterprise Report', welcomeMessage: 'Welcome Senior Vice President: Phoebe Lorelei Magsino-Erni' },
+            'SVPGS': { password: 'SVPGS123', role: 'user', access: 'Enterprise Report', welcomeMessage: 'Welcome Senior Vice President: Alfredo Sixto Antonio Jr.' },
+            'SVPDSFM': { password: 'SVPDSFM123', role: 'user', access: 'Enterprise Report', welcomeMessage: 'Welcome Senior Vice President: Leonel Joseph Lising' },
+            'SVPCPS': { password: 'SVPCPS123', role: 'user', access: 'Enterprise Report', welcomeMessage: 'Welcome Senior Vice President Corporate Planning and Strategies: Shuntaro Hiroya' },
+            'SVPOINTL': { password: 'SVPOINTL123', role: 'user', access: 'Enterprise Report', welcomeMessage: 'Welcome Senior Vice President, Operations: Stanley Dy' },
 
             // VPs & AVPs
-            'VPFPA': { password: 'VPFPA123', role: 'user', access: 'Enterprise Report', welcomeMessage: 'Welcome  Vice President, Financial Planning and Analysis | Financial Planning and Analysis: Erika Jane S. Aggarao' },
-            'AVPCFP': { password: 'AVPCFP123', role: 'user', access: 'Enterprise Report', welcomeMessage: 'Welcome  Associate Vice President, Workforce Management: Christopher F. Peña' },
-            'AVPCPC': { password: 'AVPCPC123', role: 'user', access: 'Enterprise Report', welcomeMessage: 'Welcome  Associate Vice President, Workforce Management: Christine Pamela Carlos' },
-            'VPICOM': { password: 'VPICOM123', role: 'user', access: 'Enterprise Report', welcomeMessage: 'Welcome  Vice President, Operations Infocom: Justin Pamintuan' },
-            'VPJAPACVF': { password: 'VPJAPACVF123', role: 'user', access: 'Enterprise Report', welcomeMessage: 'Welcome  Vice President, Operations JAPAC: Vince Fortuna' },
-            'VPJAPACCF': { password: 'VPJAPACCF123', role: 'user', access: 'Enterprise Report', welcomeMessage: 'Welcome  Vice President, Operations JAPAC: Chris  Fajardo' },
+            'VPFPA': { password: 'VPFPA123', role: 'user', access: 'Enterprise Report', welcomeMessage: 'Welcome Vice President: Erika Jane S. Aggarao' },
+            'AVPCFP': { password: 'AVPCFP123', role: 'user', access: 'Enterprise Report', welcomeMessage: 'Welcome Associate Vice President: Christopher F. Peña' },
+            'AVPCPC': { password: 'AVPCPC123', role: 'user', access: 'Enterprise Report', welcomeMessage: 'Welcome Associate Vice President: Christine Pamela Carlos' },
+            'VPICOM': { password: 'VPICOM123', role: 'user', access: 'Enterprise Report', welcomeMessage: 'Welcome Vice President: Justin Pamintuan' },
+            'VPJAPACVF': { password: 'VPJAPACVF123', role: 'user', access: 'Enterprise Report', welcomeMessage: 'Welcome Vice President: Vince Fortuna' },
+            'VPJAPACCF': { password: 'VPJAPACCF123', role: 'user', access: 'Enterprise Report', welcomeMessage: 'Welcome Vice President: Chris Fajardo' },
         };
+
 
         let currentUser = null; // { username, role }
 
@@ -2904,18 +2879,22 @@
 
             // 3. Specific Access (Report Name, Client Group, or Sector)
             if (currentUser.access && currentUser.access !== 'ALL Access Report') {
-                const accessValue = currentUser.access.toLowerCase();
-                return reports.filter(r => {
-                    // Check Report Name
-                    if (r.name.toLowerCase() === accessValue) return true;
-                    // Check Client Group (key from groupMap or enriched group field)
-                    const groupKey = getGroupKey(r.name).toLowerCase();
-                    const enrichedGroup = (r.group || '').toLowerCase();
-                    if (groupKey === accessValue || enrichedGroup === accessValue) return true;
-                    // Check Sector
-                    if ((r.sector || '').toLowerCase() === accessValue) return true;
+                const accessItems = Array.isArray(currentUser.access)
+                    ? currentUser.access.map(a => a.toLowerCase())
+                    : [currentUser.access.toLowerCase()];
 
-                    return false;
+                return reports.filter(r => {
+                    const reportNameLower = r.name.toLowerCase();
+                    const groupKeyLower = getGroupKey(r.name).toLowerCase();
+                    const enrichedGroupLower = (r.group || '').toLowerCase();
+                    const sectorLower = (r.sector || '').toLowerCase();
+
+                    return accessItems.some(accessValue =>
+                        reportNameLower === accessValue ||
+                        groupKeyLower === accessValue ||
+                        enrichedGroupLower === accessValue ||
+                        sectorLower === accessValue
+                    );
                 });
             }
 
@@ -2964,20 +2943,28 @@
             const allowed = getAllowedReports();
 
             // 2. Calculate available options for Group dropdown
-            // If a Sector is selected, only show Groups within that Sector
             let groupOptionsReports = allowed;
             if (selectedSectorFilter) {
                 groupOptionsReports = groupOptionsReports.filter(r => r.sector === selectedSectorFilter);
             }
             const groups = [...new Set(groupOptionsReports.map(r => r.group).filter(Boolean))].sort();
 
+            // Auto-clear group filter if it's no longer valid for the selected sector
+            if (selectedGroupFilter && !groups.includes(selectedGroupFilter)) {
+                selectedGroupFilter = null;
+            }
+
             // 3. Calculate available options for Sector dropdown
-            // If a Group is selected, only show Sectors containing that Group
             let sectorOptionsReports = allowed;
             if (selectedGroupFilter) {
                 sectorOptionsReports = sectorOptionsReports.filter(r => r.group === selectedGroupFilter);
             }
             const sectors = [...new Set(sectorOptionsReports.map(r => r.sector).filter(Boolean))].sort();
+
+            // Auto-clear sector filter if it's no longer valid for the selected group
+            if (selectedSectorFilter && !sectors.includes(selectedSectorFilter)) {
+                selectedSectorFilter = null;
+            }
 
             // 4. Render Group Dropdown
             groupFiltersContainer.innerHTML = `
