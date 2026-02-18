@@ -331,7 +331,7 @@
         .bg-gradient {
             position: fixed;
             inset: 0;
-            background: url('https://i.imgur.com/bCT9vtn.png') no-repeat center center fixed;
+            background: url('https://i.imgur.com/MNlK5sR.png') no-repeat center center fixed;
             background-size: cover;
             pointer-events: none;
             z-index: 0;
@@ -636,14 +636,14 @@
         .bg-shapes-dots {
             position: absolute;
             inset: 0;
-            background-image: 
+            background-image:
                 radial-gradient(circle, rgba(120, 200, 255, 0.10) 1.6px, transparent 1.6px),
                 radial-gradient(circle, rgba(170, 140, 255, 0.10) 1.6px, transparent 1.6px),
                 radial-gradient(circle, rgba(120, 200, 255, 0.07) 1.1px, transparent 1.1px),
                 radial-gradient(circle, rgba(170, 140, 255, 0.07) 1.1px, transparent 1.1px),
                 radial-gradient(circle, rgba(255, 180, 210, 0.06) 1px, transparent 1px),
                 radial-gradient(circle, rgba(120, 200, 255, 0.05) 0.9px, transparent 0.9px);
-            background-size: 
+            background-size:
                 120px 120px,
                 150px 150px,
                 100px 100px,
@@ -682,7 +682,7 @@
         }
 
         body.dark-mode .bg-shapes-dots {
-            background-image: 
+            background-image:
                 radial-gradient(circle at 20% 30%, rgba(167, 139, 250, 0.1) 2px, transparent 2px),
                 radial-gradient(circle at 80% 70%, rgba(139, 92, 246, 0.1) 2px, transparent 2px),
                 radial-gradient(circle at 40% 80%, rgba(167, 139, 250, 0.08) 1.5px, transparent 1.5px),
@@ -732,6 +732,7 @@
 
         body.dark-mode .dark-mode-toggle {
             background: #fbbf24;
+            color: #1e3a8a;
         }
 
         body.dark-mode .dark-mode-toggle .moon-icon {
@@ -838,13 +839,13 @@
 
         .brand-text .tagline {
             font-size: 1.35rem;
-            color: #000000;
+            color: #12909d;
             font-weight: 700;
             letter-spacing: 0.02em;
         }
 
         body.dark-mode .brand-text .tagline {
-            color: #ffffff;
+            color: #12909d;
         }
 
         .powered-by {
@@ -2409,7 +2410,7 @@
         }
 
         .btn-cancel:hover {
-            background: url('https://i.imgur.com/qCMHE9S.png') no-repeat center center fixed;
+            background: url('https://i.imgur.com/bCT9vtn.png') no-repeat center center fixed;
             background-size: cover;
         }
 
@@ -2582,8 +2583,8 @@
         <div class="top-bar">
             <div class="brand-section">
                 <div class="airc-logo-wrap">
-                    <img src="https://i.imgur.com/qCMHE9S.png"
-                        alt="AIRC - Altius Inspiro Report Centralization" class="airc-logo">
+                    <img src="https://i.imgur.com/qCMHE9S.png" alt="AIRC - Altius Inspiro Report Centralization"
+                        class="airc-logo">
                 </div>
                 <div class="brand-divider" aria-hidden="true"></div>
                 <div class="brand-text">
@@ -2591,11 +2592,12 @@
                 </div>
             </div>
             <div class="header-actions">
-                <button class="dark-mode-toggle" id="darkModeToggle" onclick="toggleDarkMode()" aria-label="Toggle dark mode">
+                <button class="dark-mode-toggle" id="darkModeToggle" onclick="toggleDarkMode()"
+                    aria-label="Toggle dark mode">
                     <svg class="moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
                     </svg>
-                    <svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display: none;">
+                    <svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <circle cx="12" cy="12" r="5"></circle>
                         <line x1="12" y1="1" x2="12" y2="3"></line>
                         <line x1="12" y1="21" x2="12" y2="23"></line>
@@ -2650,7 +2652,8 @@
 
         <div class="result-info" id="resultInfo">
             <div class="available-reports-title">
-                <svg class="available-reports-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <svg class="available-reports-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                    stroke-width="2">
                     <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
                     <polyline points="14 2 14 8 20 8"></polyline>
                     <line x1="16" y1="13" x2="8" y2="13"></line>
@@ -2666,15 +2669,14 @@
 
         <footer class="footer">
             <div class="footer-logo-wrap">
-                <img src="https://i.imgur.com/qCMHE9S.png"
-                    alt="AIRC" class="footer-logo">
+                <img src="https://i.imgur.com/qCMHE9S.png" alt="AIRC" class="footer-logo">
             </div>
             <span class="footer-text">Created by <strong>AIRC</strong> · Altius Inspiro Report Centralization</span>
         </footer>
     </div>
 
     <script>
-        // Logo mapping: report name key -> domain for favicon (Google favicon API)
+        // Logos mapping: report name key -> domain for favicon (Google favicon API)
         const logoMap = {
             'Landing Page': 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSgHmjRk7reipCIoYUF_OpznpijBJwk_ib9SA&s',
             'Enterprise Report': 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSgHmjRk7reipCIoYUF_OpznpijBJwk_ib9SA&s',
@@ -2787,6 +2789,7 @@
             'VITRO': 'https://cdn.manilastandard.net/wp-content/uploads/2024/11/VITRO-Data-Center.jpg'
         };
 
+        // Reports Links
         const reports = [
             { name: "Landing Page", internal: "https://app.powerbi.com/groups/21679cca-04e8-4658-86d6-fe210ccc4391/reports/11ffe05e-285f-462a-973c-372916a48f41/577d459659ec6a4087a2?experience=power-bi", external: "https://app.powerbi.com/view?r=eyJrIjoiZWU5MWIxNmEtYzQwYy00NDIwLTkyYjMtZmY2ODY0NjkzZTQyIiwidCI6IjE3MGZjOGRiLTI4YmUtNDg3Ni1hZDRmLTk0ZTk4NDE4M2E3YiIsImMiOjEwfQ%3D%3D" },
             { name: "Enterprise Report", internal: "https://app.powerbi.com/groups/29bdb726-3c19-4572-8a36-7d3f19ccf99c/reports/3666c25d-60c5-4b14-8264-8b043b361b4c/7c801072021c29ebf9a2?experience=power-bi", external: "https://app.powerbi.com/view?r=eyJrIjoiMGRkY2VlZWMtMzJiNi00MzQ5LWE2ZWQtZmU5MjgxOTJmMjgzIiwidCI6IjE3MGZjOGRiLTI4YmUtNDg3Ni1hZDRmLTk0ZTk4NDE4M2E3YiIsImMiOjEwfQ%3D%3D" },
@@ -3188,12 +3191,16 @@
             'VPICOM': { password: 'VPICOM123', role: 'user', access: 'Enterprise Report', welcomeMessage: 'Welcome Vice President: Justin Pamintuan' },
             'VPJAPACVF': { password: 'VPJAPACVF123', role: 'user', access: 'Enterprise Report', welcomeMessage: 'Welcome Vice President: Vince Fortuna' },
             'VPJAPACCF': { password: 'VPJAPACCF123', role: 'user', access: 'Enterprise Report', welcomeMessage: 'Welcome Vice President: Chris Fajardo' },
+            'VPCPSRCG': { password: 'VPCPSRCG123', role: 'user', access: 'Enterprise Report', welcomeMessage: 'Welcome Vice President: Rommel Cadano Gutierrez' },
+
+            // OPS/SM'
+            'SMCPSMVC': { password: 'SMCPSMVC123', role: 'user', access: 'Enterprise Report', welcomeMessage: 'Welcome Senior Manager: Ma. Janet Vargas Carigma' },
         };
 
 
         let currentUser = null; // { username, role }
 
-        // Report name -> group key (for grouping)
+        // Report name -> group key (for grouping)/ REPORT GROUPING
         const groupMap = {
             'Landing Page': 'General', 'Enterprise Report': 'General', 'Consolidated Absenteeism AIRC': 'General',
             'AIRC-1800 Flowers': '1800 Flowers', 'AIRC-AHMC': 'AHMC', 'AIRC-ANA': 'ANA', 'AIRC-APTELLA': 'APTELLA',
@@ -3989,4 +3996,5 @@
 </body>
 
 </html>
+
 </html>
