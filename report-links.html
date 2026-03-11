@@ -4013,11 +4013,15 @@
 
             form.addEventListener('submit', (e) => {
                 e.preventDefault();
-                const username = (userInput.value || '').trim();
+                const enteredUsername = (userInput.value || '').trim().toLowerCase();
                 const password = passInput.value || '';
 
-                const user = USERS[username];
+                // Case-insensitive user lookup
+                const matchedUsername = Object.keys(USERS).find(key => key.toLowerCase() === enteredUsername);
+                const user = matchedUsername ? USERS[matchedUsername] : null;
+
                 if (user && user.password === password) {
+                    const username = matchedUsername; // Use the canonical casing from our users list
                     currentUser = { username, role: user.role, access: user.access, welcomeMessage: user.welcomeMessage, displayName: user.displayName };
                     errorEl.classList.remove('visible');
 
