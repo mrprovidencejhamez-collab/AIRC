@@ -3593,7 +3593,11 @@
                 if (!grouped[key]) grouped[key] = [];
                 grouped[key].push(r);
             });
-            return Object.entries(grouped).sort((a, b) => a[0].localeCompare(b[0]));
+            return Object.entries(grouped).sort((a, b) => {
+                if (a[0] === 'General') return -1;
+                if (b[0] === 'General') return 1;
+                return a[0].localeCompare(b[0]);
+            });
         }
 
         function renderLinkCard(r) {
@@ -3821,7 +3825,11 @@
             if (selectedSectorFilter) {
                 groupOptionsReports = groupOptionsReports.filter(r => r.sector === selectedSectorFilter);
             }
-            const groups = [...new Set(groupOptionsReports.map(r => r.group).filter(Boolean))].sort();
+            const groups = [...new Set(groupOptionsReports.map(r => r.group).filter(Boolean))].sort((a, b) => {
+                if (a === 'General') return -1;
+                if (b === 'General') return 1;
+                return a.localeCompare(b);
+            });
 
             // Auto-clear group filter if it's no longer valid for the selected sector
             if (selectedGroupFilter && !groups.includes(selectedGroupFilter)) {
